@@ -1,0 +1,54 @@
+class Solution {
+public:
+    string predictPartyVictory(string senate) {
+        int n=senate.length();
+        queue<char> qu;
+        int k=0,m=0,x=0,y=0;
+        for(int i=0;i<n;i++)
+        {
+            if(senate[i]=='R')
+            x++;
+            else y++;
+            qu.push(senate[i]);
+        }
+        while(1)
+        {
+            if(x==0)
+            {
+                cout<<"Dire";
+                return "Dire";
+            }
+            if(y==0)
+            {
+                cout<<"Radiant";
+                return "Radiant";
+            }
+            char ch=qu.front();
+            if(k>0&&ch=='D')
+            {
+                qu.pop();
+                k--;y--;
+            }
+            else if(m>0&&ch=='R')
+            {
+                qu.pop();
+                m--;x--;
+            }
+            else
+            {
+            if(ch=='R')
+            {
+                qu.pop();
+                qu.push(ch);
+                k++;
+            }
+            else if(ch=='D')
+            {
+                qu.pop();
+                qu.push(ch);
+                m++;
+            }
+            }
+        }
+    }
+};
